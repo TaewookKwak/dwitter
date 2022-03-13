@@ -5,7 +5,7 @@ const router = express.Router()
 // 로그인
 router.post('/login', authController.login)
 // 회원가입
-router.post('/signup', authController.signup)
+
 // 로그아웃
 
 export default router
