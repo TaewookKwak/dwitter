@@ -1,36 +1,28 @@
 let users = [
   {
+    id: '1',
     username: 'taewook',
-    password: '123123',
+    password: '$2a$12$Nb0G3B13w2lPL.RE/u/CZuhjvHae7h4xOAXR5dgzRErCt.JFtQKdC',
     name: 'taewook',
     email: 'taewook@naver.com',
     url: '',
   },
-  {
-    username: 'sam',
-    password: '123123',
-    name: 'sam',
-    email: 'sam@naver.com',
-    url: '',
-  },
 ]
 
-export async function login(username, password) {
-  const foundUser = users.find(
-    (user) => user.username === username && user.password === password,
-  )
-  return foundUser
+export async function findByUsername(username) {
+  return users.find((user) => user.username === username)
 }
 
-export async function signup(username, password, name, eamil, url) {
+export async function findById(id) {
+  return users.find((user) => user.id === id)
+}
+
+export async function signupUser(user) {
   const NewUser = {
-    username: username,
-    password: password,
-    name: name,
-    eamil: eamil,
-    url: url,
+    ...user,
+    id: Date.now().toString(),
   }
 
-  users = [NewUser, ...users]
-  return users
+  users.push(NewUser)
+  return NewUser.id
 }
