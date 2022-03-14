@@ -1,39 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 const NewTweetForm = ({ tweetService, onError, onCreated }) => {
-  const [tweet, setTweet] = useState('');
+  const [tweet, setTweet] = useState('')
 
   const onSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault()
     tweetService
       .postTweet(tweet)
       .then((created) => {
-        setTweet('');
-        onCreated(created);
+        console.log(created)
+        setTweet('')
+        onCreated(created)
       })
-      .catch(onError);
-  };
+      .catch(onError)
+  }
 
   const onChange = (event) => {
-    setTweet(event.target.value);
-  };
+    setTweet(event.target.value)
+  }
 
   return (
-    <form className='tweet-form' onSubmit={onSubmit}>
+    <form className="tweet-form" onSubmit={onSubmit}>
       <input
-        type='text'
-        placeholder='Edit your tweet'
+        type="text"
+        placeholder="Edit your tweet"
         value={tweet}
         required
         autoFocus
         onChange={onChange}
-        className='form-input tweet-input'
+        className="form-input tweet-input"
       />
-      <button type='submit' className='form-btn'>
+      <button type="submit" className="form-btn">
         Post
       </button>
     </form>
-  );
-};
+  )
+}
 
-export default NewTweetForm;
+export default NewTweetForm
